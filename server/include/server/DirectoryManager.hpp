@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "ServerSettings.hpp"
 
 namespace server {
     class DirectoryManager {

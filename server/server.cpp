@@ -14,6 +14,7 @@
 #include <server/Commands/CommandFactory.hpp>
 #include <server/DirectoryManager.hpp>
 #include <server/StringUtilities.hpp>
+#include <server/ServerSettings.hpp>
 
 #include <algorithm>
 
@@ -31,7 +32,7 @@ int main() {
         if (!server::DirectoryManager::FolderExists(currentPath.string() + "/data")) {
             server::DirectoryManager::GenerateDirectory(currentPath.string(), "data");
         }
-
+        server::ServerSettings::GetInstance()->RootFolder = currentPath.string() + "/" + "data";
 
         for (;;) {
             std::cerr << "waiting for client to connect\n";
@@ -55,7 +56,7 @@ int main() {
                         std::string c = request.substr(0, firstWordEnd);
                         commandFactory->ExecuteCommand(client,
                                                        stringToLower(c),
-                                                       request.substr(firstWordEnd));
+                                                       request.substr(firstWordEnd + 1));
                     } else {
                         commandFactory->ExecuteCommand(client,
                                                        stringToLower(request),
