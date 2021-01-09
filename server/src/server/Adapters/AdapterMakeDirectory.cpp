@@ -5,8 +5,7 @@
 using namespace server;
 using namespace server::adapter;
 
-void
-AdapterMakeDirectory::Execute(asio::ip::tcp::iostream &ioStream, const std::string &params) const {
+void AdapterMakeDirectory::Execute(asio::ip::tcp::iostream &ioStream, const std::string &params) const {
     std::stringstream ss(params);
     std::istream_iterator<std::string> begin(ss);
     std::istream_iterator<std::string> end;
