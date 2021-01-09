@@ -9,8 +9,13 @@
 #include <string>
 #include <stdexcept>
 #include <asio.hpp>
+#include <filesystem>
 
-#include "server/Commands/CommandFactory.hpp"
+#include <server/Commands/CommandFactory.hpp>
+#include <server/DirectoryManager.hpp>
+#include <server/StringUtilities.hpp>
+
+#include <algorithm>
 
 
 int main() {
@@ -22,6 +27,10 @@ int main() {
 
 
         auto commandFactory = std::make_unique<server::CommandFactory>();
+        auto currentPath = std::filesystem::current_path();
+        if (!server::DirectoryManager::FolderExists(currentPath.string() + "/data")) {
+            server::DirectoryManager::GenerateDirectory(currentPath.string(), "data");
+        }
 
 
         for (;;) {
@@ -41,7 +50,17 @@ int main() {
                     std::cerr << "will disconnect from client " << client.socket().local_endpoint() << LF;
                     break;
                 } else {
-                    commandFactory->ExecuteCommand(client, request, {});
+                    auto firstWordEnd = request.find(' ');
+                    if (firstWordEnd < request.length()) {
+                        std::string c = request.substr(0, firstWordEnd);
+                        commandFactory->ExecuteCommand(client,
+                                                       stringToLower(c),
+                                                       request.substr(firstWordEnd));
+                    } else {
+                        commandFactory->ExecuteCommand(client,
+                                                       stringToLower(request),
+                                                       {});
+                    }
                 }
             }
         }
