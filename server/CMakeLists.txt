@@ -3,8 +3,10 @@ project(server)
 
 set(CMAKE_CXX_STANDARD 20)
 
+add_compile_definitions(_WIN32_WINNT=0x0601)
+
 add_executable(server server.cpp
-        src/CommandFactory.cpp)
+        src/server/CommandFactory.cpp src/server/InfoCommand.cpp)
 
 target_include_directories(server PRIVATE src include)
 

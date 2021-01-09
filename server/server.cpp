@@ -10,41 +10,44 @@
 #include <stdexcept>
 #include <asio.hpp>
 
+#include "server/Commands/CommandFactory.hpp"
+
 
 int main() {
     try {
-        const int server_port{ 12345 };
-        const char* lf{ "\n" };
-        const char* crlf{ "\r\n" };
+        const int server_port{12345};
 
         asio::io_context io_context;
-        asio::ip::tcp::acceptor server{ io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), server_port) };
+        asio::ip::tcp::acceptor server{io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), server_port)};
+
+
+        auto commandFactory = std::make_unique<server::CommandFactory>();
+
 
         for (;;) {
             std::cerr << "waiting for client to connect\n";
             asio::ip::tcp::iostream client;
             server.accept(client.socket());
-            std::cerr << "client connected from " << client.socket().local_endpoint() << lf;
-            client << "Welcome to AvanSync server 1.0" << crlf;
+            std::cerr << "client connected from " << client.socket().local_endpoint() << LF;
+            client << "Welcome to AvanSync server 1.0" << CRLF;
             for (;;) {
                 std::string request;
                 getline(client, request);
                 request.erase(request.end() - 1); // remove '\r'
-                std::cerr << "client says: " << request << lf;
+                std::cerr << "client says: " << request << LF;
 
                 if (request == "quit") {
-                    client << "Bye." << crlf;
-                    std::cerr << "will disconnect from client " << client.socket().local_endpoint() << lf;
+                    client << "Bye." << CRLF;
+                    std::cerr << "will disconnect from client " << client.socket().local_endpoint() << LF;
                     break;
-                }
-                else {
-                    client << request << crlf; // simply echo the request
+                } else {
+                    commandFactory->ExecuteCommand(client, request, {});
                 }
             }
         }
 
     }
-    catch (const std::exception& ex) {
+    catch (const std::exception &ex) {
         std::cerr << "server: " << ex.what() << '\n';
         return EXIT_FAILURE;
     }
