@@ -14,6 +14,7 @@ AdapterMakeDirectory::Execute(asio::ip::tcp::iostream &ioStream, const std::stri
 
     if (p.size() != 2) {
         ioStream << "invalid input for 'mkdir' expected 'mkdir' {parent dir} {folder name}" << CRLF;
+        return;
     }
 
     auto cmd = CommandMakeDirectory(p[0], p[1]);
