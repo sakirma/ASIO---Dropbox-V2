@@ -1,14 +1,15 @@
-#include "server/Commands/CommandFactory.hpp"
-
-#include "server/Commands/InfoCommand.hpp"
-#include "server/Adapters/AdapterMakeDirectory.hpp"
+#include "server/commands/CommandFactory.hpp"
+#include "server/commands/CommandInfo.hpp"
+#include "server/adapters/AdapterMakeDirectory.hpp"
+#include "server/adapters/AdapterDelete.hpp"
 
 
 using namespace server;
 
 CommandFactory::CommandFactory() {
-    factory["info"] = std::make_unique<InfoCommand>();
+    factory["info"] = std::make_unique<CommandInfo>();
     factory["mkdir"] = std::make_unique<adapter::AdapterMakeDirectory>();
+    factory["del"] = std::make_unique<adapter::AdapterDelete>();
 }
 
 void CommandFactory::ExecuteCommand(asio::ip::tcp::iostream &ioStream,

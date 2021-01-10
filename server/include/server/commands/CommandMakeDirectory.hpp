@@ -16,18 +16,6 @@ namespace server {
             parentDir_ = parentDir;
             dirName_ = dirName;
         }
-
-        ~CommandMakeDirectory() override = default;
-
-        CommandMakeDirectory(const CommandMakeDirectory &other) = delete;
-
-        CommandMakeDirectory(CommandMakeDirectory &&other) noexcept {} // move constructor
-
-        CommandMakeDirectory &operator=(const CommandMakeDirectory &other) = delete;
-
-        CommandMakeDirectory &operator=(CommandMakeDirectory &&other) noexcept { // move assignment
-            return *this;
-        }
     };
 }
 

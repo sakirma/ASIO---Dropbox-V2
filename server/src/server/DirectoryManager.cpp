@@ -19,3 +19,7 @@ bool DirectoryManager::PathIsReadOnly(const std::string &path) {
     bool write = (perms & std::filesystem::perms::owner_write) != std::filesystem::perms::none;
     return read && !write;
 }
+
+bool DirectoryManager::RemoveDirectoryOrFile(const std::string &path) {
+     return std::filesystem::remove_all(path) >= 0;
+}

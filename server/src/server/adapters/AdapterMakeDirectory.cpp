@@ -1,5 +1,5 @@
-#include "server/Adapters/AdapterMakeDirectory.hpp"
-#include <server/Commands/CommandMakeDirectory.hpp>
+#include "server/adapters/AdapterMakeDirectory.hpp"
+#include <server/commands/CommandMakeDirectory.hpp>
 #include <memory>
 
 using namespace server;

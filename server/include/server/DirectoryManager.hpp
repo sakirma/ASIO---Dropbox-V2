@@ -11,6 +11,8 @@ namespace server {
         static bool GenerateDirectory(const std::string &folderPath, const std::string &folderName);
         static bool PathIsReadOnly(const std::string &path);
 
+        static bool RemoveDirectoryOrFile(const std::string &path);
+
     public:
         DirectoryManager() = default;
 
