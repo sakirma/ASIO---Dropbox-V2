@@ -9,6 +9,7 @@ namespace server {
         static bool FolderExists(const std::string &folderPath);
 
         static bool GenerateDirectory(const std::string &folderPath, const std::string &folderName);
+        static bool PathIsReadOnly(const std::string &path);
 
     public:
         DirectoryManager() = default;
@@ -24,5 +25,6 @@ namespace server {
         DirectoryManager &operator=(DirectoryManager &&other) noexcept { // move assignment
             return *this;
         }
+
     };
 }

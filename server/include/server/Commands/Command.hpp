@@ -2,6 +2,7 @@
 
 #define CRLF "\r\n"
 #define LF "\n"
+#define OK "OK"
 
 
 #include <asio/ip/tcp.hpp>
