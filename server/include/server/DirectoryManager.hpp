@@ -6,12 +6,15 @@
 namespace server {
     class DirectoryManager {
     public:
-        static bool FolderExists(const std::string &folderPath);
+        static bool FolderOrFileExists(const std::string &folderPath);
 
         static bool GenerateDirectory(const std::string &folderPath, const std::string &folderName);
+
         static bool PathIsReadOnly(const std::string &path);
 
         static bool RemoveDirectoryOrFile(const std::string &path);
+
+        static bool RenameDirectory(const std::string &path, const std::string &newName);
 
     public:
         DirectoryManager() = default;

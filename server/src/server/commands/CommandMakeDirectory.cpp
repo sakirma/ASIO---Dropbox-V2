@@ -7,12 +7,12 @@ using namespace server;
 
 void CommandMakeDirectory::Execute(asio::ip::tcp::iostream &ioStream) const {
     std::string rootPath = ServerSettings::GetInstance()->RootFolder;
-    if (!DirectoryManager::FolderExists(rootPath + "/" + parentDir_)) {
+    if (!DirectoryManager::FolderOrFileExists(rootPath + "/" + parentDir_)) {
         ioStream << "Given Parent folder does not exists!" << CRLF;
         return;
     }
 
-    if (DirectoryManager::FolderExists(rootPath + "/" + parentDir_ + "/" + dirName_)) {
+    if (DirectoryManager::FolderOrFileExists(rootPath + "/" + parentDir_ + "/" + dirName_)) {
         ioStream << "Folder '" + dirName_ + "' already exists in the given parent directory" << CRLF;
         return;
     }

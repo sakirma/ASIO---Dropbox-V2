@@ -11,7 +11,7 @@ CommandDelete::CommandDelete(const std::string &path) {
 void CommandDelete::Execute(asio::ip::tcp::iostream &ioStream) const {
     std::string rootPath = ServerSettings::GetInstance()->RootFolder;
     std::string deletePath = rootPath + "/" + delete_path_;
-    if (!DirectoryManager::FolderExists(deletePath)) {
+    if (!DirectoryManager::FolderOrFileExists(deletePath)) {
         ioStream << "Given folder does not exists!" << CRLF;
         return;
     }

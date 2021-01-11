@@ -1,9 +1,9 @@
 #pragma once
 
+#include <server/commands/Command.hpp>
+
 #include <string>
 #include <asio/ip/tcp.hpp>
-
-#include <server/Commands/Command.hpp>
 
 namespace server::adapter {
     class Adapter {
@@ -11,5 +11,18 @@ namespace server::adapter {
         virtual ~Adapter() = default;
 
         virtual void Execute(asio::ip::tcp::iostream &ioStream, const std::string &params) const = 0;
+
+        static int splitParams(std::vector<std::string> &out, const std::string &params) {
+            std::stringstream ss(params);
+            std::istream_iterator<std::string> begin(ss);
+            std::istream_iterator<std::string> end;
+            std::vector<std::string> p(begin, end);
+
+            std::copy(p.begin(),
+                      p.end(),
+                      std::back_inserter(out));
+
+            return out.size();
+        }
     };
 }

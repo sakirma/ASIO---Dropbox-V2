@@ -14,6 +14,7 @@ namespace server {
 
     public:
         CommandFactory();
+
         void ExecuteCommand(asio::ip::tcp::iostream &ioStream,
                             const std::string &commandName,
                             const std::string &params);

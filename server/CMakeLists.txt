@@ -11,7 +11,10 @@ add_executable(server server.cpp
         src/server/DirectoryManager.cpp
         src/server/commands/CommandMakeDirectory.cpp
         src/server/adapters/AdapterMakeDirectory.cpp
-        src/server/ServerSettings.cpp src/server/adapters/AdapterDelete.cpp src/server/commands/CommandDelete.cpp)
+        src/server/ServerSettings.cpp
+        src/server/adapters/AdapterDelete.cpp
+        src/server/commands/CommandDelete.cpp
+        src/server/adapters/AdapterRename.cpp src/server/commands/CommandRename.cpp)
 
 target_include_directories(server PRIVATE src include)
 

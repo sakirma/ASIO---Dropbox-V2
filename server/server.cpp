@@ -29,7 +29,7 @@ int main() {
 
         auto commandFactory = std::make_unique<server::CommandFactory>();
         auto currentPath = std::filesystem::current_path();
-        if (!server::DirectoryManager::FolderExists(currentPath.string() + "/data")) {
+        if (!server::DirectoryManager::FolderOrFileExists(currentPath.string() + "/data")) {
             server::DirectoryManager::GenerateDirectory(currentPath.string(), "data");
         }
         server::ServerSettings::GetInstance()->RootFolder = currentPath.string() + "/" + "data";
