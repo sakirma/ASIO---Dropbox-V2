@@ -12,6 +12,10 @@ namespace server {
 
         static bool PathIsReadOnly(const std::string &path);
 
+
+        static void
+        SplitPath(const std::string &path, std::string &drive, std::string &dir, std::string &fname, std::string &ext);
+
         static bool RemoveDirectoryOrFile(const std::string &path);
 
         static bool RenameDirectory(const std::string &path, const std::string &newName);
@@ -30,6 +34,5 @@ namespace server {
         DirectoryManager &operator=(DirectoryManager &&other) noexcept { // move assignment
             return *this;
         }
-
     };
 }

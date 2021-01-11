@@ -11,7 +11,7 @@
 #include <asio.hpp>
 #include <filesystem>
 
-#include <server/Commands/CommandFactory.hpp>
+#include <server/commands/CommandFactory.hpp>
 #include <server/DirectoryManager.hpp>
 #include <server/StringUtilities.hpp>
 #include <server/ServerSettings.hpp>
@@ -51,6 +51,7 @@ int main() {
                     std::cerr << "will disconnect from client " << client.socket().local_endpoint() << LF;
                     break;
                 } else {
+
                     auto firstWordEnd = request.find(' ');
                     if (firstWordEnd < request.length()) {
                         std::string c = request.substr(0, firstWordEnd);

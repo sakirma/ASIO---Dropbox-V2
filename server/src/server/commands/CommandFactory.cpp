@@ -9,6 +9,7 @@ using namespace server;
 
 CommandFactory::CommandFactory() {
     factory["info"] = std::make_unique<CommandInfo>();
+    factory["error"] = std::make_unique<CommandInfo>();
     factory["mkdir"] = std::make_unique<adapter::AdapterMakeDirectory>();
     factory["del"] = std::make_unique<adapter::AdapterDelete>();
     factory["ren"] = std::make_unique<adapter::AdapterRename>();

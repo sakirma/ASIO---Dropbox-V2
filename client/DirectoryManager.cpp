@@ -1,10 +1,8 @@
-#include "server/DirectoryManager.hpp"
+#include "./DirectoryManager.hpp"
 
 #include <filesystem>
 #include <iostream>
 
-
-using namespace server;
 
 bool DirectoryManager::FolderOrFileExists(const std::string &folderPath) {
     return std::filesystem::exists(folderPath);
