@@ -21,7 +21,7 @@ bool AdapterPut::Execute(asio::ip::tcp::iostream &ioStream, const std::string &p
     core::CommandPut commandPut(path);
     std::string m{};
     if (commandPut.Execute(ioStream, m)) {
-        ioStream << "put " + path << CRLF;
+        ioStream << "put " + path + " " + std::to_string(commandPut.buffer.size()) << CRLF;
         std::string response{};
 
         while (true) {
