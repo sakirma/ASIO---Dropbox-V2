@@ -8,22 +8,23 @@ CommandRename::CommandRename(const std::string &path, const std::string &newName
 
 }
 
-void CommandRename::Execute(asio::ip::tcp::iostream &ioStream) const {
+bool CommandRename::Execute(asio::ip::tcp::iostream &ioStream, std::string &message) const {
     if (!DirectoryManager::FolderOrFileExists(path_)) {
-        ioStream << "Given folder or file does not exists!" << CRLF;
-        return;
+        message = "Given folder or file does not exists!";
+        return false;
     }
 
     if (DirectoryManager::PathIsReadOnly(path_)) {
-        ioStream << "No Permission" << CRLF;
-        return;
+        message = "No Permission";
+        return false;
     }
 
     try {
         DirectoryManager::RenameDirectory(path_, newName_);
-        ioStream << OK << CRLF;
+        return true;
     }
     catch (std::exception &e) {
         ioStream << e.what() << CRLF;
+        return false;
     }
 }

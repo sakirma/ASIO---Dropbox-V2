@@ -8,7 +8,7 @@
 
 #include <core/commands/CommandFactory.hpp>
 #include <core/DirectoryManager.hpp>
-#include <server/StringUtilities.hpp>
+#include <core/StringUtilities.hpp>
 #include <server/ServerSettings.hpp>
 
 #include <algorithm>

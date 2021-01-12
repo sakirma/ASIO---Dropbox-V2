@@ -13,7 +13,7 @@ namespace core {
         std::map<std::string, std::unique_ptr<adapter::Adapter>> factory{};
 
     public:
-        void ExecuteCommand(asio::ip::tcp::iostream &ioStream,
+        bool ExecuteCommand(asio::ip::tcp::iostream &ioStream,
                             const std::string &commandName,
                             const std::string &params);
 

@@ -10,7 +10,7 @@ namespace core::adapter {
     public:
         virtual ~Adapter() = default;
 
-        virtual void Execute(asio::ip::tcp::iostream &ioStream, const std::string &params) const = 0;
+        virtual bool Execute(asio::ip::tcp::iostream &ioStream, const std::string &params) const = 0;
 
         static int splitParams(std::vector<std::string> &out, const std::string &params) {
             std::stringstream ss(params);

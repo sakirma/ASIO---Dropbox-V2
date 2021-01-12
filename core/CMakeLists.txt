@@ -4,7 +4,7 @@ project(core_project)
 set(CMAKE_CXX_STANDARD 20)
 add_compile_definitions(_WIN32_WINNT=0x0601)
 
-add_library(core SHARED
+add_library(core STATIC
         src/core/commands/CommandFactory.cpp
         src/core/commands/CommandInfo.cpp
         src/core/commands/CommandMakeDirectory.cpp

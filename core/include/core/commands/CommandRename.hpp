@@ -7,7 +7,7 @@ namespace core {
     public:
         explicit CommandRename(const std::string &path, const std::string &newName);
 
-        void Execute(asio::ip::tcp::iostream &ioStream) const override;
+        bool Execute(asio::ip::tcp::iostream &ioStream, std::string &message) const override;
 
     private:
         const std::string path_;

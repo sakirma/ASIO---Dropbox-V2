@@ -5,6 +5,6 @@
 namespace core {
     class CommandError : public Command {
     public:
-        void Execute(asio::ip::tcp::iostream &ioStream) const override;
+        bool Execute(asio::ip::tcp::iostream &ioStream, std::string &message) const override;
     };
 }

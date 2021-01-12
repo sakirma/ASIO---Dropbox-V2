@@ -1,7 +1,6 @@
 #include <core/DirectoryManager.hpp>
 
 #include <filesystem>
-#include <iostream>
 
 
 bool DirectoryManager::FolderOrFileExists(const std::string &folderPath) {

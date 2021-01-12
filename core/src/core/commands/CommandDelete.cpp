@@ -7,17 +7,17 @@ CommandDelete::CommandDelete(const std::string &path) {
     this->delete_path_ = path;
 }
 
-void CommandDelete::Execute(asio::ip::tcp::iostream &ioStream) const {
+bool CommandDelete::Execute(asio::ip::tcp::iostream &ioStream, std::string &message) const {
     if (!DirectoryManager::FolderOrFileExists(delete_path_)) {
-        ioStream << "Given folder does not exists!" << CRLF;
-        return;
+        message = "Given folder does not exists!";
+        return false;
     }
 
     if (DirectoryManager::PathIsReadOnly(delete_path_)) {
-        ioStream << "No Permission" << CRLF;
-        return;
+        message = "No Permission";
+        return false;
     }
 
     DirectoryManager::RemoveDirectoryOrFile(delete_path_);
-    ioStream << OK << CRLF;
+    return true;
 }
