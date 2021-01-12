@@ -3,6 +3,7 @@
 #define CRLF "\r\n"
 #define LF "\n"
 #define OK "OK"
+#define BREAK "[BREAK]"
 
 
 #include <asio/ip/tcp.hpp>
@@ -12,6 +13,6 @@ namespace core {
     public:
         virtual ~Command() = default;
 
-        virtual bool Execute(asio::ip::tcp::iostream &ioStream, std::string &message) const = 0;
+        virtual bool Execute(asio::ip::tcp::iostream &ioStream, std::string &message) = 0;
     };
 }

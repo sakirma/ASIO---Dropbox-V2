@@ -5,7 +5,7 @@
 
 using namespace core;
 
-bool CommandMakeDirectory::Execute(asio::ip::tcp::iostream &ioStream, std::string &message) const {
+bool CommandMakeDirectory::Execute(asio::ip::tcp::iostream &ioStream, std::string &message)  {
     if (!DirectoryManager::FolderOrFileExists( path_)) {
         message = "Given Parent folder does not exists!";
         return false;

@@ -8,8 +8,11 @@
 #include <client/adapters/AdapterMakeDirectory.hpp>
 #include <client/adapters/AdapterRename.hpp>
 #include <client/adapters/AdapterDelete.hpp>
+#include <client/adapters/AdapterDirectory.hpp>
+#include <client/ClientSettings.hpp>
 
 #include <core/StringUtilities.hpp>
+#include <core/DirectoryManager.hpp>
 
 #include <iostream>
 #include <cstdlib>
@@ -17,8 +20,6 @@
 #include <stdexcept>
 #include <asio.hpp>
 #include <filesystem>
-#include <core/DirectoryManager.hpp>
-#include <client/ClientSettings.hpp>
 
 using namespace client;
 
@@ -26,7 +27,8 @@ Client::Client() {
     commandFactory_ = std::make_unique<core::CommandFactory>();
     commandFactory_->AddAdapter<adapter::AdapterMakeDirectory>("mkdir")
             .AddAdapter<adapter::AdapterRename>("ren")
-            .AddAdapter<adapter::AdapterDelete>("del");
+            .AddAdapter<adapter::AdapterDelete>("del")
+            .AddAdapter<adapter::AdapterDirectory>("dir");
 }
 
 void Client::HandleClientRequest(asio::ip::tcp::iostream &server) {
@@ -42,12 +44,12 @@ void Client::HandleClientRequest(asio::ip::tcp::iostream &server) {
             if (firstWordEnd < req.length()) {
                 std::string c = req.substr(0, firstWordEnd);
                 requestHandled = commandFactory_->ExecuteCommand(server,
-                                                stringToLower(c),
-                                                req.substr(firstWordEnd + 1));
+                                                                 stringToLower(c),
+                                                                 req.substr(firstWordEnd + 1));
             } else {
                 requestHandled = commandFactory_->ExecuteCommand(server,
-                                                stringToLower(req),
-                                                {});
+                                                                 stringToLower(req),
+                                                                 {});
             }
 
 //            if (fileSelection.Select(req)) {

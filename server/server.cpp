@@ -23,6 +23,7 @@
 #include <server/adapters/AdapterDelete.hpp>
 #include <server/adapters/AdapterRename.hpp>
 #include <core/commands/CommandInfo.hpp>
+#include <server/adapters/AdapterDirectory.hpp>
 
 
 using namespace server;
@@ -39,9 +40,10 @@ int main() {
         auto commandFactory = std::make_unique<core::CommandFactory>();
         commandFactory->AddAdapter<core::CommandInfo>("info")
 //                        .AddAdapter<core::CommandError>()
-                        .AddAdapter<AdapterMakeDirectory>("mkdir")
-                        .AddAdapter<AdapterDelete>("del")
-                        .AddAdapter<AdapterRename>("ren");
+                .AddAdapter<AdapterMakeDirectory>("mkdir")
+                .AddAdapter<AdapterDelete>("del")
+                .AddAdapter<AdapterRename>("ren")
+                .AddAdapter<AdapterDirectory>("dir");
 
         auto currentPath = std::filesystem::current_path();
         if (!DirectoryManager::FolderOrFileExists(currentPath.string() + "/data")) {

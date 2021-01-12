@@ -7,7 +7,7 @@ CommandDelete::CommandDelete(const std::string &path) {
     this->delete_path_ = path;
 }
 
-bool CommandDelete::Execute(asio::ip::tcp::iostream &ioStream, std::string &message) const {
+bool CommandDelete::Execute(asio::ip::tcp::iostream &ioStream, std::string &message)  {
     if (!DirectoryManager::FolderOrFileExists(delete_path_)) {
         message = "Given folder does not exists!";
         return false;

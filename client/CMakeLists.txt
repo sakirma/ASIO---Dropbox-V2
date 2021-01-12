@@ -12,7 +12,7 @@ add_executable(client
         src/client/adapters/AdapterMakeDirectory.cpp
         src/client/adapters/AdapterDelete.cpp
         src/client/adapters/AdapterRename.cpp
-        src/client/adapters/ErrorAdapter.cpp)
+        src/client/adapters/ErrorAdapter.cpp src/client/adapters/AdapterDirectory.cpp)
 
 target_include_directories(client PRIVATE src include)
 

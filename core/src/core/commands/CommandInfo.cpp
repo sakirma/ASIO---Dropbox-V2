@@ -2,7 +2,7 @@
 
 using namespace core;
 
-bool CommandInfo::Execute(asio::ip::tcp::iostream &ioStream, std::string &message) const {
+bool CommandInfo::Execute(asio::ip::tcp::iostream &ioStream, std::string &message)  {
     message = "this function should not be used";
     return false;
 }

@@ -8,7 +8,7 @@ CommandRename::CommandRename(const std::string &path, const std::string &newName
 
 }
 
-bool CommandRename::Execute(asio::ip::tcp::iostream &ioStream, std::string &message) const {
+bool CommandRename::Execute(asio::ip::tcp::iostream &ioStream, std::string &message)  {
     if (!DirectoryManager::FolderOrFileExists(path_)) {
         message = "Given folder or file does not exists!";
         return false;
