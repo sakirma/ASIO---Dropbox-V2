@@ -9,9 +9,8 @@ CommandDir::CommandDir(const std::string &path) : path_(std::string(path)) {
 
 }
 
-template <typename TP>
-static std::time_t to_time_t(TP tp)
-{
+template<typename TP>
+static std::time_t to_time_t(TP tp) {
     using namespace std::chrono;
     auto sctp = time_point_cast<system_clock::duration>(tp - TP::clock::now()
                                                         + system_clock::now());
@@ -28,12 +27,18 @@ bool CommandDir::Execute(asio::ip::tcp::iostream &ioStream, std::string &message
         auto ftime = std::filesystem::last_write_time(i);
         std::time_t cftime = to_time_t(ftime);
 
-        std::stringstream ss;
-        ss << std::put_time(std::localtime(&cftime), "%Y-%m-%d %H:%M:%S");
+        std::stringstream time;
+        time << std::put_time(std::localtime(&cftime), "%Y-%m-%d %H:%M:%S");
+
+        std::string fileType = i.is_directory() ? "D" : "F";
+
+        std::string fileSize = i.is_regular_file() ? std::to_string(i.file_size()) : "0";
 
         files.emplace_back(
                 i.path().filename().string(),
-                ss.str()
+                time.str(),
+                fileType,
+                fileSize
         );
     }
 

@@ -20,7 +20,7 @@ bool AdapterDirectory::Execute(asio::ip::tcp::iostream &ioStream, const std::str
     auto dirCommand = core::CommandDir(path);
     if (dirCommand.Execute(ioStream, result)) {
         for (auto &f : dirCommand.files) {
-            ioStream << f.name + " | " + f.time << CRLF;
+            ioStream << f.fileType + "|" + f.name + "|" + f.time + "|" + f.fileSize << CRLF;
 
             std::string response{};
             for (;;) {
@@ -39,7 +39,7 @@ bool AdapterDirectory::Execute(asio::ip::tcp::iostream &ioStream, const std::str
             }
         }
 
-        ioStream << OK << CRLF;
+        ioStream << CRLF;
         return true;
     } else {
         std::cout << result << std::endl;
