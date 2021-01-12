@@ -1,9 +1,10 @@
-#include "server/adapters/AdapterMakeDirectory.hpp"
-#include <server/commands/CommandMakeDirectory.hpp>
+#include <core/adapters/AdapterMakeDirectory.hpp>
+#include <core/commands/CommandMakeDirectory.hpp>
+
 #include <memory>
 
-using namespace server;
-using namespace server::adapter;
+using namespace core;
+using namespace core::adapter;
 
 void AdapterMakeDirectory::Execute(asio::ip::tcp::iostream &ioStream, const std::string &params) const {
     std::vector<std::string> p{};
@@ -12,5 +13,5 @@ void AdapterMakeDirectory::Execute(asio::ip::tcp::iostream &ioStream, const std:
         return;
     }
 
-    CommandMakeDirectory(p[0], p[1]).Execute(ioStream);
+    core::CommandMakeDirectory(p[0], p[1]).Execute(ioStream);
 }

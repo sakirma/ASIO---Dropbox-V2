@@ -1,11 +1,11 @@
 #pragma once
 
-#include <server/commands/Command.hpp>
+#include <core/commands/Command.hpp>
 
 #include <string>
 #include <asio/ip/tcp.hpp>
 
-namespace server::adapter {
+namespace core::adapter {
     class Adapter {
     public:
         virtual ~Adapter() = default;

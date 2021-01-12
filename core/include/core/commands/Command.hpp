@@ -7,7 +7,7 @@
 
 #include <asio/ip/tcp.hpp>
 
-namespace server {
+namespace core {
     class Command {
     public:
         virtual ~Command() = default;

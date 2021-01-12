@@ -1,8 +1,8 @@
-#include <server/adapters/AdapterDelete.hpp>
-#include <server/commands/CommandDelete.hpp>
+#include <core/adapters/AdapterDelete.hpp>
+#include <core/commands/CommandDelete.hpp>
 
-using namespace server;
-using namespace server::adapter;
+using namespace core;
+using namespace core::adapter;
 
 void AdapterDelete::Execute(asio::ip::tcp::iostream &ioStream, const std::string &params) const {
     std::vector<std::string> p{};
@@ -11,5 +11,5 @@ void AdapterDelete::Execute(asio::ip::tcp::iostream &ioStream, const std::string
         return;
     }
 
-    CommandDelete(p[0]).Execute(ioStream);
+    core::CommandDelete(p[0]).Execute(ioStream);
 }

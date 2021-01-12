@@ -1,7 +1,7 @@
-#include "server/adapters/ErrorAdapter.hpp"
+#include "core/adapters/ErrorAdapter.hpp"
 
-using namespace server;
-using namespace server::adapter;
+using namespace core;
+using namespace core::adapter;
 
 
 void ErrorAdapter::Execute(asio::ip::tcp::iostream &ioStream,

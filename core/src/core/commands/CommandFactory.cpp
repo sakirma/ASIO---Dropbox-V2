@@ -1,11 +1,11 @@
-#include "server/commands/CommandFactory.hpp"
-#include "server/commands/CommandInfo.hpp"
-#include "server/adapters/AdapterMakeDirectory.hpp"
-#include "server/adapters/AdapterDelete.hpp"
-#include "server/adapters/AdapterRename.hpp"
+#include <core/commands/CommandFactory.hpp>
+#include <core/commands/CommandInfo.hpp>
+#include <core/adapters/AdapterMakeDirectory.hpp>
+#include <core/adapters/AdapterDelete.hpp>
+#include <core/adapters/AdapterRename.hpp>
 
 
-using namespace server;
+using namespace core;
 
 CommandFactory::CommandFactory() {
     factory["info"] = std::make_unique<CommandInfo>();

@@ -1,13 +1,13 @@
 #pragma once
 
-#include <server/adapters/Adapter.hpp>
+#include "core/adapters/Adapter.hpp"
 
 #include <map>
 #include <memory>
 #include <string>
 #include <vector>
 
-namespace server {
+namespace core {
     class CommandFactory {
     private:
         std::map<std::string, std::unique_ptr<adapter::Adapter>> factory{};

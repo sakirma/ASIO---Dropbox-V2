@@ -3,6 +3,6 @@ project(CPP2)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(client client.cpp DirectoryManager.cpp DirectoryManager.hpp)
+add_executable(client client.cpp)
 
-target_link_libraries(client ws2_32)
+target_link_libraries(client ws2_32 core)

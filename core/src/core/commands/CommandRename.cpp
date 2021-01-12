@@ -1,8 +1,7 @@
-#include <server/commands/CommandRename.hpp>
-#include <server/ServerSettings.hpp>
-#include <server/DirectoryManager.hpp>
+#include <core/commands/CommandRename.hpp>
+#include <core/DirectoryManager.hpp>
 
-using namespace server;
+using namespace core;
 
 CommandRename::CommandRename(const std::string &path, const std::string &newName) : path_(std::string(path)),
                                                                                     newName_(std::string(newName)) {
@@ -10,20 +9,17 @@ CommandRename::CommandRename(const std::string &path, const std::string &newName
 }
 
 void CommandRename::Execute(asio::ip::tcp::iostream &ioStream) const {
-    std::string rootPath = ServerSettings::GetInstance()->RootFolder;
-    std::string renamePath = rootPath + "/" + path_;
-
-    if (!DirectoryManager::FolderOrFileExists(renamePath)) {
+    if (!DirectoryManager::FolderOrFileExists(path_)) {
         ioStream << "Given folder or file does not exists!" << CRLF;
         return;
     }
 
-    if (DirectoryManager::PathIsReadOnly(renamePath)) {
+    if (DirectoryManager::PathIsReadOnly(path_)) {
         ioStream << "No Permission" << CRLF;
         return;
     }
 
-    if(DirectoryManager::RenameDirectory(renamePath, newName_)) {
+    if(DirectoryManager::RenameDirectory(path_, newName_)) {
         ioStream << OK << CRLF;
     }
     else {

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "server/commands/Command.hpp"
+#include "Command.hpp"
 
-namespace server {
+namespace core {
     class CommandDelete : public Command {
     public:
         CommandDelete(const std::string& path);

@@ -11,8 +11,8 @@
 #include <asio.hpp>
 #include <filesystem>
 
-#include <server/commands/CommandFactory.hpp>
-#include <server/DirectoryManager.hpp>
+#include <core/commands/CommandFactory.hpp>
+#include <core/DirectoryManager.hpp>
 #include <server/StringUtilities.hpp>
 #include <server/ServerSettings.hpp>
 
@@ -27,10 +27,10 @@ int main() {
         asio::ip::tcp::acceptor server{io_context, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), server_port)};
 
 
-        auto commandFactory = std::make_unique<server::CommandFactory>();
+        auto commandFactory = std::make_unique<core::CommandFactory>();
         auto currentPath = std::filesystem::current_path();
-        if (!server::DirectoryManager::FolderOrFileExists(currentPath.string() + "/data")) {
-            server::DirectoryManager::GenerateDirectory(currentPath.string(), "data");
+        if (!DirectoryManager::FolderOrFileExists(currentPath.string() + "/data")) {
+            DirectoryManager::GenerateDirectory(currentPath.string(), "data");
         }
         server::ServerSettings::GetInstance()->RootFolder = currentPath.string() + "/" + "data";
 

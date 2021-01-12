@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Command.hpp"
-#include "server/adapters/Adapter.hpp"
+#include "core/adapters/Adapter.hpp"
 
-namespace server {
+namespace core {
     class CommandInfo : public Command, public adapter::Adapter {
     public:
         void Execute(asio::ip::tcp::iostream &ioStream) const override;

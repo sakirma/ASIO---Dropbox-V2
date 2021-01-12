@@ -1,6 +1,6 @@
-#include "server/Commands/CommandInfo.hpp"
+#include "core/commands/CommandInfo.hpp"
 
-using namespace server;
+using namespace core;
 
 void CommandInfo::Execute(asio::ip::tcp::iostream &ioStream) const {
 

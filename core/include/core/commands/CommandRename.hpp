@@ -1,8 +1,8 @@
 #pragma once
 
-#include <server/commands/Command.hpp>
+#include "Command.hpp"
 
-namespace server {
+namespace core {
     class CommandRename : public Command {
     public:
         explicit CommandRename(const std::string &path, const std::string &newName);

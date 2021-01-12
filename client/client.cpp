@@ -12,12 +12,12 @@
 #include <filesystem>
 #include <fstream>
 
-#include "./DirectoryManager.hpp"
+#include <core/DirectoryManager.hpp>
 
 #define CRLF "\r\n"
 #define LF "\r"
 
-
+// TODO: Upload to the relative path of the file.
 class FileSelection {
 public:
     std::vector<char> buffer{};
@@ -80,9 +80,7 @@ void HandleClientRequest(asio::ip::tcp::iostream &server,
         if (getline(std::cin, req)) {
 
             if (fileSelection.Select(req)) {
-
                 if (getline(std::cin, req)) {
-
                     fileSelection.Send(server, fileSelection);
                     requestHandled = true;
                 } else {

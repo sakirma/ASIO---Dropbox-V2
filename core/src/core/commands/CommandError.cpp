@@ -1,6 +1,6 @@
-#include "server/commands/CommandError.hpp"
+#include <core/commands/CommandError.hpp>
 
-using namespace server;
+using namespace core;
 
 
 void CommandError::Execute(asio::ip::tcp::iostream &ioStream) const {

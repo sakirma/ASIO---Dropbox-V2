@@ -1,9 +1,9 @@
 #pragma once
 
-#include "server/Adapters/Adapter.hpp"
+#include <core/adapters/Adapter.hpp>
 
 
-namespace server::adapter {
+namespace core::adapter {
     class AdapterMakeDirectory : public Adapter {
     public:
         void Execute(asio::ip::tcp::iostream &ioStream, const std::string &params) const override;

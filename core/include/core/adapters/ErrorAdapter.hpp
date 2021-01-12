@@ -1,10 +1,10 @@
 #pragma once
 
-#include "server/adapters/Adapter.hpp"
 
+#include <core/adapters/Adapter.hpp>
 
-namespace server::adapter {
-    class AdapterDelete : public Adapter {
+namespace core::adapter {
+    class ErrorAdapter : public Adapter {
     public:
         void Execute(asio::ip::tcp::iostream &ioStream, const std::string &params) const override;
     };
