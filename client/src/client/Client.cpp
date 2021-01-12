@@ -9,6 +9,7 @@
 #include <client/adapters/AdapterRename.hpp>
 #include <client/adapters/AdapterDelete.hpp>
 #include <client/adapters/AdapterDirectory.hpp>
+#include <client/adapters/AdapterPut.hpp>
 #include <client/ClientSettings.hpp>
 
 #include <core/StringUtilities.hpp>
@@ -28,11 +29,11 @@ Client::Client() {
     commandFactory_->AddAdapter<adapter::AdapterMakeDirectory>("mkdir")
             .AddAdapter<adapter::AdapterRename>("ren")
             .AddAdapter<adapter::AdapterDelete>("del")
-            .AddAdapter<adapter::AdapterDirectory>("dir");
+            .AddAdapter<adapter::AdapterDirectory>("dir")
+            .AddAdapter<adapter::AdapterPut>("put");
 }
 
 void Client::HandleClientRequest(asio::ip::tcp::iostream &server) {
-    FileSelection fileSelection{};
     const char *prompt{"avansync> "};
 
     bool requestHandled = false;
@@ -51,19 +52,6 @@ void Client::HandleClientRequest(asio::ip::tcp::iostream &server) {
                                                                  stringToLower(req),
                                                                  {});
             }
-
-//            if (fileSelection.Select(req)) {
-//                if (getline(std::cin, req)) {
-//                    fileSelection.Send(server, fileSelection);
-//                    requestHandled = true;
-//                } else {
-//                    requestHandled = true;
-//                }
-//
-//            } else {
-//                server << req << CRLF;
-//                requestHandled = true;
-//            }
         }
     }
 }

@@ -10,7 +10,7 @@ add_executable(server server.cpp
         src/server/adapters/AdapterMakeDirectory.cpp
         src/server/adapters/AdapterDelete.cpp
         src/server/adapters/AdapterRename.cpp
-        src/server/adapters/ErrorAdapter.cpp src/server/adapters/AdapterDirectory.cpp)
+        src/server/adapters/ErrorAdapter.cpp src/server/adapters/AdapterDirectory.cpp src/server/adapters/AdapterPut.cpp)
 
 target_include_directories(server PRIVATE src include)
 

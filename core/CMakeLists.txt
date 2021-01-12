@@ -11,8 +11,10 @@ add_library(core STATIC
         src/core/commands/CommandDelete.cpp
         src/core/commands/CommandRename.cpp
         src/core/commands/CommandError.cpp
-        src/core/DirectoryManager.cpp
-        src/core/commands/CommandDir.cpp)
+        src/core/commands/CommandDir.cpp
+        src/core/commands/CommandPut.cpp
+
+        src/core/DirectoryManager.cpp)
 
 target_link_libraries(core ws2_32)
 

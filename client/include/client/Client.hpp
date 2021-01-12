@@ -2,7 +2,6 @@
 
 #include <asio/basic_socket_iostream.hpp>
 #include <core/commands/CommandFactory.hpp>
-#include <client/FileSelection.hpp>
 
 #include <memory>
 
