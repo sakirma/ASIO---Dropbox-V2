@@ -1,8 +1,9 @@
-#include <core/adapters/AdapterDelete.hpp>
+#include <server/adapters/AdapterDelete.hpp>
 #include <core/commands/CommandDelete.hpp>
+#include <server/ServerSettings.hpp>
 
-using namespace core;
-using namespace core::adapter;
+using namespace server;
+using namespace server::adapter;
 
 void AdapterDelete::Execute(asio::ip::tcp::iostream &ioStream, const std::string &params) const {
     std::vector<std::string> p{};
@@ -10,6 +11,7 @@ void AdapterDelete::Execute(asio::ip::tcp::iostream &ioStream, const std::string
         ioStream << "invalid input for 'del' expected 'del' {path}" << CRLF;
         return;
     }
+    std::string path = ServerSettings::GetInstance()->RootFolder + "/" + p[0];
 
-    core::CommandDelete(p[0]).Execute(ioStream);
+    core::CommandDelete(path).Execute(ioStream);
 }

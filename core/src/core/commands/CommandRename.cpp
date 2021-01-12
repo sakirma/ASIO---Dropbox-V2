@@ -19,10 +19,11 @@ void CommandRename::Execute(asio::ip::tcp::iostream &ioStream) const {
         return;
     }
 
-    if(DirectoryManager::RenameDirectory(path_, newName_)) {
+    try {
+        DirectoryManager::RenameDirectory(path_, newName_);
         ioStream << OK << CRLF;
     }
-    else {
-        ioStream << "Something went wrong" << CRLF;
+    catch (std::exception &e) {
+        ioStream << e.what() << CRLF;
     }
 }

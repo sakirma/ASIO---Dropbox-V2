@@ -1,8 +1,9 @@
-#include <core/adapters/AdapterRename.hpp>
+#include <client/adapters/AdapterRename.hpp>
 #include <core/commands/CommandRename.hpp>
+#include <client/ClientSettings.hpp>
 
-using namespace core;
-using namespace core::adapter;
+using namespace client;
+using namespace client::adapter;
 
 void AdapterRename::Execute(asio::ip::tcp::iostream &ioStream, const std::string &params) const {
     std::vector<std::string> p{};
@@ -10,6 +11,8 @@ void AdapterRename::Execute(asio::ip::tcp::iostream &ioStream, const std::string
         ioStream << "invalid input for 'ren' expected 'ren' {path} {name}" << CRLF;
         return;
     }
+    std::string path = ClientSettings::GetInstance()->RootFolder + "/" + p[0];
 
-    core::CommandRename(p[0], p[1]).Execute(ioStream);
+
+    core::CommandRename(path, p[1]).Execute(ioStream);
 }

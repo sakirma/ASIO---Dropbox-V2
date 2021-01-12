@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Command.hpp"
-#include "core/adapters/Adapter.hpp"
+#include "core/Adapter.hpp"
 
 namespace core {
     class CommandInfo : public Command, public adapter::Adapter {

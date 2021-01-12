@@ -19,11 +19,8 @@ bool DirectoryManager::PathIsReadOnly(const std::string &path) {
     return read && !write;
 }
 
-bool DirectoryManager::RemoveDirectoryOrFile(const std::string &path) {
-    return std::filesystem::remove_all(path) >= 0;
-}
-
-void DirectoryManager::SplitPath(const std::string &path, std::string &drive, std::string &dir, std::string &fname, std::string &ext) {
+void DirectoryManager::SplitPath(const std::string &path, std::string &drive, std::string &dir, std::string &fname,
+                                 std::string &ext) {
     char drive_buf[_MAX_DRIVE];
     char dir_buf[_MAX_DIR];
     char fname_buf[_MAX_FNAME];
@@ -37,6 +34,10 @@ void DirectoryManager::SplitPath(const std::string &path, std::string &drive, st
     ext.assign(ext_buf);
 }
 
+bool DirectoryManager::RemoveDirectoryOrFile(const std::string &path) {
+    return std::filesystem::remove_all(path) >= 0;
+}
+
 bool DirectoryManager::RenameDirectory(const std::string &path, const std::string &newName) {
     std::string drive{};
     std::string dir{};
@@ -44,13 +45,7 @@ bool DirectoryManager::RenameDirectory(const std::string &path, const std::strin
     std::string ext{};
     SplitPath(path, drive, dir, fname, ext);
 
-    try {
-        std::filesystem::rename(drive + dir + fname + ext,
-                                drive + dir + newName);
-        return true;
-    }
-    catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-        return false;
-    }
+    std::filesystem::rename(drive + dir + fname + ext,
+                            drive + dir + newName);
+    return true;
 }

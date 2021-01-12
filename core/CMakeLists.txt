@@ -11,11 +11,7 @@ add_library(core SHARED
         src/core/commands/CommandDelete.cpp
         src/core/commands/CommandRename.cpp
         src/core/commands/CommandError.cpp
-        src/core/DirectoryManager.cpp
-        src/core/adapters/AdapterMakeDirectory.cpp
-        src/core/adapters/AdapterDelete.cpp
-        src/core/adapters/AdapterRename.cpp
-        src/core/adapters/ErrorAdapter.cpp)
+        src/core/DirectoryManager.cpp)
 
 target_link_libraries(core ws2_32)
 

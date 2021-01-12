@@ -1,7 +1,7 @@
-#include "core/adapters/ErrorAdapter.hpp"
+#include <client/adapters/ErrorAdapter.hpp>
 
-using namespace core;
-using namespace core::adapter;
+using namespace client;
+using namespace client::adapter;
 
 
 void ErrorAdapter::Execute(asio::ip::tcp::iostream &ioStream,
@@ -12,5 +12,5 @@ void ErrorAdapter::Execute(asio::ip::tcp::iostream &ioStream,
         return;
     }
 
-
+    ioStream << "Not Implemented" << CRLF;
 }
